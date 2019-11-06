@@ -56,10 +56,12 @@ public class AdministoratorRepository {
 				.addValue("mailAddress",mailAddress).addValue("password",password);
 		Administrator admin = new Administrator();
 		admin = template.queryForObject(sql, param, ADMINISTRATOR_ROW_MAPPER);
-		if(admin == null) {
+		try {
+			return admin;
+		}catch(Exception e){
+			e.printStackTrace();
 			return null;
 		}
-		return admin;
 	}
 	
 }
