@@ -31,7 +31,8 @@ public class EmployeeService {
 	
 	/**
 	 * 主キーから従業員情報を取得する.
-	 * (従業員が存在しない場合はSpringが自動的に例外を発生する)
+	 * 従業員が存在しない場合はSpringが自動的に例外を発生する。
+	 * 
 	 * @param id ID
 	 * @return 検索された従業員情報
 	 */
@@ -40,7 +41,8 @@ public class EmployeeService {
 	}
 	
 	/**
-	 * 従業員情報を更新する
+	 * 従業員情報を更新する.
+	 * 
 	 * @param employee 更新する従業員情報
 	 */
 	public void update(Employee employee) {

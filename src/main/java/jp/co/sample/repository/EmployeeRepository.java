@@ -69,8 +69,9 @@ public class EmployeeRepository {
 	}
 	
 	/**
-	 * 従業員情報を変更する
+	 * 従業員情報を変更する.
 	 * (今回は従業員情報の扶養人数だけ変更できるようなSQLを発行する)
+
 	 * @param employee 変更したい従業員情報
 	 */
 	public void update(Employee employee) {
