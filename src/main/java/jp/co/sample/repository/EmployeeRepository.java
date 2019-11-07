@@ -1,6 +1,5 @@
 package jp.co.sample.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,11 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.sample.domain.Employee;
 
+/**
+ * employeesテーブルを操作するリポジトリ.
+ * @author yuichi
+ *
+ */
 @Repository
 public class EmployeeRepository {
 
@@ -36,23 +40,22 @@ public class EmployeeRepository {
 	};
 	
 	/**
-	 * 従業員一覧情報を入社日順で取得する
-	 * (従業員が存在しない場合はサイズ0件の従業員一覧を返す)
-	 * @return なし
+	 * 従業員一覧情報を入社日順で取得する.
+	 * 
+	 * @return 従業員一覧(従業員が存在しない場合はサイズ0件の従業員一覧を返す)
 	 */
 	public List<Employee> findAll(){
 		String sql = "SELECT id,name,image,gender,hire_date,mail_address,"
 				+ "zip_code,address,telephone,salary,characteristics,dependents_count"
 				+" FROM employees ORDER BY hire_date ASC";
-		List<Employee> employeeList = new ArrayList<>();
-		employeeList = template.query(sql, EMPLOYEE_ROW_MAPPER);
+		List<Employee> employeeList = template.query(sql, EMPLOYEE_ROW_MAPPER);
 		return employeeList;
 	}
 	
 	/**
 	 * 主キーから従業員情報を取得する
 	 * (従業員が存在しない場合はSpringが自動的に例外を発生する)
-	 * @param id
+	 * @param id ID
 	 * @return 検索された従業員情報
 	 */
 	public Employee load(Integer id) {
@@ -62,22 +65,17 @@ public class EmployeeRepository {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id",id);
 		Employee employee = new Employee();
 		employee = template.queryForObject(sql, param, EMPLOYEE_ROW_MAPPER);
-		try {
-			return employee;
-		}catch(Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+		return employee;
 	}
 	
 	/**
 	 * 従業員情報を変更する
 	 * (今回は従業員情報の扶養人数だけ変更できるようなSQLを発行する)
-	 * @param employee
+	 * @param employee 変更したい従業員情報
 	 */
 	public void update(Employee employee) {
-		String sql = "UPDATE employees SET dependents_count=:dependents_count";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("dependents_count",employee.getDependentsCount());
+		String sql = "UPDATE employees SET dependents_count=:dependents_count WHERE id=:id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("dependents_count",employee.getDependentsCount()).addValue("id", employee.getId());
 		template.update(sql, param);
 	}
 	

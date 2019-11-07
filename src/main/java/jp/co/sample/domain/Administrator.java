@@ -1,11 +1,11 @@
 package jp.co.sample.domain;
 
 /**
- * 管理者情報のDomainクラス
+ * 管理者情報のDomainクラス.
+ * 
  * @author yuichi
  */
 public class Administrator {
-
 
 	/**	ID */
 	private Integer id;
