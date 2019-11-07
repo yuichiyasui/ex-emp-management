@@ -10,7 +10,7 @@ public class UpdateEmployeeForm {
 	/**	扶養人数を変更する従業員のID */
 	private String id;
 	/**	扶養人数 */
-	private String depenentsCount;
+	private String dependentsCount;
 	
 	public String getId() {
 		return id;
@@ -18,15 +18,15 @@ public class UpdateEmployeeForm {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getDepenentsCount() {
-		return depenentsCount;
+	public String getDependentsCount() {
+		return dependentsCount;
 	}
-	public void setDepenentsCount(String depenentsCount) {
-		this.depenentsCount = depenentsCount;
+	public void setDependentsCount(String dependentsCount) {
+		this.dependentsCount = dependentsCount;
 	}
 	@Override
 	public String toString() {
-		return "UpdateEmployeeForm [id=" + id + ", depenentsCount=" + depenentsCount + "]";
+		return "UpdateEmployeeForm [id=" + id + ", dependentsCount=" + dependentsCount + "]";
 	}
 	
 
